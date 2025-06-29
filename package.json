@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "sh start.sh",
+    "build": "sh build.sh",
+    "dev": "nodemon src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yerassyl Zh",
+  "license": "ISC",
+  "description": "Backend server for LifeTrack mobile app",
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.7",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@prisma/adapter-libsql": "^6.10.1",
+    "@prisma/client": "^6.10.1",
+    "express": "^5.1.0",
+    "prisma": "^6.10.1"
+  }
+}
