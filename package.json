@@ -2,6 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "sh start.sh",
     "build": "sh build.sh",
@@ -12,16 +13,21 @@
   "license": "ISC",
   "description": "Backend server for LifeTrack mobile app",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.3",
     "@types/node": "^24.0.7",
     "nodemon": "^3.1.10",
-    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
   "dependencies": {
     "@prisma/adapter-libsql": "^6.10.1",
     "@prisma/client": "^6.10.1",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.0.0",
     "express": "^5.1.0",
-    "prisma": "^6.10.1"
+    "jose": "^6.0.11",
+    "prisma": "^6.10.1",
+    "tsx": "^4.20.3",
+    "zod": "^3.25.67"
   }
 }

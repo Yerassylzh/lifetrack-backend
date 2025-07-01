@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
-    "module": "esnext",
     "esModuleInterop": true,
-    "moduleResolution": "node",                                
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
     "strict": true,
-    "outDir": "dist",                    
+    "outDir": "dist",
+    "target": "es2024"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "ts-node": {
+    "esm": true
+  }
 }
