@@ -12,7 +12,7 @@ const signup = async (req: Request, res: Response) => {
     name: user.name,
     email: user.email,
   });
-  res.json({ session }).status(200);
+  res.json({ session });
 };
 
 const validateNewUser = async (req: Request, res: Response) => {
@@ -20,44 +20,38 @@ const validateNewUser = async (req: Request, res: Response) => {
 
   const validationData = validateEmailAndPassword(email, password);
   if (!validationData.isValid) {
-    res.json(validationData).status(200);
+    res.json(validationData);
     return;
   }
 
   const exists = await checkEmailExists(email);
   if (exists) {
-    res
-      .json({
-        email: "User with such email already exists",
-        password: undefined,
-        isValid: false,
-      })
-      .status(200);
+    res.json({
+      email: "User with such email already exists",
+      password: undefined,
+      isValid: false,
+    });
     return;
   }
-  res
-    .json({
-      isValid: true,
-    })
-    .status(200);
+  res.json({
+    isValid: true,
+  });
 };
 
 const checkToken = async (req: Request, res: Response) => {
   const { session } = req.body;
   const payload = await decryptToken(session);
-  res.json({}).status(payload !== undefined ? 200 : 401);
+  res.status(payload !== undefined ? 200 : 401).json({});
 };
 
 const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const user = await checkUserData(email, password);
   if (!user) {
-    res
-      .json({
-        success: false,
-        message: "Incorrect combination of email and password",
-      })
-      .status(401);
+    res.status(401).json({
+      success: false,
+      message: "Incorrect combination of email and password",
+    });
     return;
   }
 
@@ -66,7 +60,7 @@ const login = async (req: Request, res: Response) => {
     name: user.name,
     email: user.email,
   });
-  res.json({ success: true, session }).status(200);
+  res.json({ success: true, session });
 };
 
 export { signup, validateNewUser, checkToken, login };
