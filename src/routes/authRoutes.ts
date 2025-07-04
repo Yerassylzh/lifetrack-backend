@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-  checkToken,
+  getTokenData,
   login,
   signup,
   validateNewUser,
@@ -10,7 +10,7 @@ const router = Router();
 
 router.post("/signup", signup);
 router.post("/validate-new-user", validateNewUser);
-router.post("/check-token", checkToken);
+router.post("/decrypt-token", getTokenData);
 router.post("/login", login);
 
 export default router;

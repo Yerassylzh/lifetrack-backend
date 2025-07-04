@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { createSession, decryptToken } from "../lib/session";
 import { checkEmailExists, checkUserData, createUser } from "../services/users";
 import { validateEmailAndPassword } from "../lib/formDataValidators";
-import { isValid } from "zod";
 
 const signup = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
@@ -38,10 +37,10 @@ const validateNewUser = async (req: Request, res: Response) => {
   });
 };
 
-const checkToken = async (req: Request, res: Response) => {
+const getTokenData = async (req: Request, res: Response) => {
   const { session } = req.body;
   const payload = await decryptToken(session);
-  res.status(payload !== undefined ? 200 : 401).json({});
+  res.status(payload !== undefined ? 200 : 401).json({ payload });
 };
 
 const login = async (req: Request, res: Response) => {
@@ -63,4 +62,4 @@ const login = async (req: Request, res: Response) => {
   res.json({ success: true, session });
 };
 
-export { signup, validateNewUser, checkToken, login };
+export { signup, validateNewUser, getTokenData, login };
