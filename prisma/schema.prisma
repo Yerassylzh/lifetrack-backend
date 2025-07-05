@@ -36,6 +36,7 @@ model Habit {
   user        User              @relation(fields: [userId], references: [id])
   name        String
   isNumerical Boolean
+  freq        Int
   createdAt   DateTime          @default(now())
   completions HabitCompletion[]
 }

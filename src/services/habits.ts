@@ -50,4 +50,18 @@ async function getHabitCompletionsForMonth(
   });
 }
 
+async function createHabit(
+  userId: string,
+  name: string,
+  freq: number,
+  type: "Checkbox" | "Numeric"
+) {
+  return await prisma.habit.create({
+    data: {
+      userId,
+      name,
+    },
+  });
+}
+
 export { getHabitsForMonth, getHabitCompletionsForMonth };

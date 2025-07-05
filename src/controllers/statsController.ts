@@ -23,4 +23,10 @@ async function getHabitsCompletionsForMonth(req: Request, res: Response) {
   res.json({ completions });
 }
 
-export { getHabitsForMonth, getHabitsCompletionsForMonth };
+async function handleCreateHabit(req: Request, res: Response) {
+  const { userId, name, freq, type } = req.body;
+  const habit = await createHabit(userId, name, freq, type);
+  res.status(200).json({ habit });
+}
+
+export { getHabitsForMonth, getHabitsCompletionsForMonth, handleCreateHabit };

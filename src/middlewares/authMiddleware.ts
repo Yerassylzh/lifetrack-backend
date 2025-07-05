@@ -7,13 +7,13 @@ const authMiddleware = async (
   next: NextFunction
 ) => {
   const token = req.headers.authorization?.split(" ")[1];
-  if (!token || decryptToken(token) === undefined) {
+  const userData = token ? await decryptToken(token) : undefined;
+  if (!token || !userData) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
 
-  const userData = await decryptToken(token);
-  if (!userData) {
+  if (req.body.userId && req.body.userId !== userData.user.id) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
